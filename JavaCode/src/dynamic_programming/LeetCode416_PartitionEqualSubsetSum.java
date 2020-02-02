@@ -1,7 +1,5 @@
 package dynamic_programming;
 
-import java.util.Arrays;
-
 /**
  * 
  * @author run-dong-zhu
@@ -46,7 +44,6 @@ public class LeetCode416_PartitionEqualSubsetSum {
     }
 
     public static void main(String[] args) {
-        //
         LeetCode416_PartitionEqualSubsetSum obj = new LeetCode416_PartitionEqualSubsetSum();
         
         int[] nums = {1, 5, 13, 5};
