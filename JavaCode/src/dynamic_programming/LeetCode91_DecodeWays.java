@@ -30,33 +30,38 @@ public class LeetCode91_DecodeWays {
         dp[0] = 1;
         dp[1] = 1;
         
-        for(int i = 1; i < dp.length; i++) {
-        	int curr = s.charAt(i) - '0';
-        	int prev = s.charAt(i - 1) - '0';
-        	
-        	if(prev == 0 && curr == 0 || (curr == 0 && (prev * 10 + curr > 26))) {
-        		return 0;
-        	}
-        	else if(prev == 0 || prev * 10 + curr > 26) {
-        		dp[i] = dp[i - 1] + 1;
-        		if(s.charAt(i) - '0' <= 6) {
-        			dp[i] = dp[i - 1] + 1;
-        		}
-        		else {
-        			dp[i] = dp[i - 1];
-        		}
-        	}
-        	else {
-        		dp[i] = dp[i - 1];
-        	}
+        for(int i = 1; i < s.length(); i++) {
+            int curr = s.charAt(i) - '0';
+            int prev = s.charAt(i - 1) - '0';
+            
+            // can't make progress, return 0
+            if (prev == 0 && curr == 0 || (curr == 0 && (prev * 10 + curr > 26)))
+            {
+                return 0;
+            }
+            // can't use the previous value, so can only get to this state from the previous
+            else if (prev == 0 || (prev * 10 + curr) > 26)
+            {
+                dp[i + 1] = dp[i];
+            }
+            // can't use current state, can only get to this state from i - 1 state
+            else if (curr == 0)
+            {
+                dp[i + 1] = dp[i - 1];
+            }
+            // can get to this state from the previous two states
+            else
+            {
+                dp[i + 1] = dp[i] + dp[i - 1];
+            }
         }
         
-        return 0;
+        return dp[dp.length - 1];
     }
 
 	public static void main(String[] args) {
 		LeetCode91_DecodeWays obj = new LeetCode91_DecodeWays();
-		String s = "109";
+		String s = "100";
 		System.out.println(obj.numDecodings(s));
 	}
 
