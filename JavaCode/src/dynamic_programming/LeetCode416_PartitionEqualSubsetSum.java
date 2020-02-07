@@ -46,7 +46,7 @@ public class LeetCode416_PartitionEqualSubsetSum {
     public static void main(String[] args) {
         LeetCode416_PartitionEqualSubsetSum obj = new LeetCode416_PartitionEqualSubsetSum();
         
-        int[] nums = {1, 5, 13, 5};
+        int[] nums = {1, 5, 11, 5};
         
         System.out.println(obj.canPartition(nums));
     }
