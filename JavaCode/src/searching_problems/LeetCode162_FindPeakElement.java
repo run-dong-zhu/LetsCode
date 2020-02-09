@@ -1,4 +1,4 @@
-package string_problems;
+package searching_problems;
 
 /**
  * 
