@@ -7,6 +7,8 @@ import java.util.Deque;
  * 
  * @author run-dong-zhu
  * @description LeetCode 239, Level: Hard
+ * 
+ * https://leetcode.com/problems/sliding-window-maximum/
  */
 public class LeetCode239_SlidingWindowMaximum {
 	
