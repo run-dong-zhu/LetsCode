@@ -55,11 +55,11 @@ public class LeetCode76_MinimumWindowSubstring {
 
 	public static void main(String[] args) {
 		LeetCode76_MinimumWindowSubstring obj = new LeetCode76_MinimumWindowSubstring();
-//		String s = "ADOBECODEBANC";
-//		String t = "ABC";
+		String s = "ADOBECODEBANC";
+		String t = "ABC";
 		
-		String s = "AA";
-		String t = "A";
+//		String s = "AA";
+//		String t = "A";
 		
 		System.out.println(obj.minWindow(s, t));
 	}
