@@ -6,6 +6,16 @@ import java.util.Arrays;
  * 
  * @author run-dong-zhu
  * @description LeetCode 1055, Level: Medium
+ * 
+ * From any string, we can form a subsequence of that string by deleting some number of 
+ * characters (possibly no deletions).
+ * 
+ * Given two strings source and target, return the minimum number of subsequences of source 
+ * such that their concatenation equals target. If the task is impossible, return -1.
+ * 
+ * Input: source = "abc", target = "abcbc"
+ * Output: 2
+ * Explanation: The target "abcbc" can be formed by "abc" and "bc", which are subsequences of source "abc".
  */
 public class LeetCode1055_ShortestWayToFormString {
     
