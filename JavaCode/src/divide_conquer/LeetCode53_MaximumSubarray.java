@@ -35,33 +35,47 @@ public class LeetCode53_MaximumSubarray {
     }
     
     // follow up find start and end index of maxSubarray
-    public int maxSub(int[] nums) {
-    	return maxSub(nums, 0, nums.length);
-    }
-    
-    public int maxSub(int[] nums, int left, int right) {
-    	int mid = (left + right) / 2;
-    	int ml = 0, mr = 0;
-    	
-    	for(int i = left, sum = 0; i < mid; i++) {
-    		sum += nums[i];
-    		ml = Math.max(ml, sum);
+    public int[] maxSub(int[] nums) {
+    	if(nums.length == 0) {
+    		return new int[0];
     	}
     	
-    	for(int i = mid + 1, sum = 0; i < right; i++) {
-    		sum += nums[i];
-    		mr = Math.max(mr, sum);
+    	int[] dp = new int[nums.length];
+    	dp[0] = nums[0];
+    	
+    	int max = nums[0];
+    	int end = 0;
+    	
+    	for(int i = 1; i < dp.length; i++) {
+    		if(dp[i - 1] > 0) {
+    			dp[i] = dp[i - 1] + nums[i];
+    		}
+    		else {
+    			dp[i] = nums[i];
+    		}
+    		
+    		if(dp[i] > max) {
+    			max = dp[i];
+    			end = i;
+    		}
     	}
     	
-    	return Math.max(ml, mr);
+    	int start = end;
+    	while(max > 0) {
+    		max -= nums[start--];
+    	}
+    	
+    	return new int[] {start + 1, end};
     }
     
-
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         LeetCode53_MaximumSubarray obj = new LeetCode53_MaximumSubarray();
         int[] nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
         System.out.println(obj.maxSubArray(nums));
+        
+        int[] res = obj.maxSub(nums);
+        System.out.println(res[0] + " " + res[1]);
     }
 
 }
