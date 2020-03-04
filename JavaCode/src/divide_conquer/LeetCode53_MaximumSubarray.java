@@ -33,6 +33,29 @@ public class LeetCode53_MaximumSubarray {
         }
         return Math.max(Math.max(lmax, rmax), ml + mr + nums[mid]);
     }
+    
+    // follow up find start and end index of maxSubarray
+    public int maxSub(int[] nums) {
+    	return maxSub(nums, 0, nums.length);
+    }
+    
+    public int maxSub(int[] nums, int left, int right) {
+    	int mid = (left + right) / 2;
+    	int ml = 0, mr = 0;
+    	
+    	for(int i = left, sum = 0; i < mid; i++) {
+    		sum += nums[i];
+    		ml = Math.max(ml, sum);
+    	}
+    	
+    	for(int i = mid + 1, sum = 0; i < right; i++) {
+    		sum += nums[i];
+    		mr = Math.max(mr, sum);
+    	}
+    	
+    	return Math.max(ml, mr);
+    }
+    
 
     public static void main(String[] args) {
         // TODO Auto-generated method stub
