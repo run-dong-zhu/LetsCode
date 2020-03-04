@@ -11,11 +11,15 @@ import java.util.Stack;
  */
 public class LeetCode150_EvaluateReversePolishNotation {
 
-    public int evalRPN(String[] tokens) throws Exception {
-        Stack<Integer> stack = new Stack<>();
-        
-        int a = 0;
-        int b = 0;
+    public double evalRPN(String[] tokens) throws Exception {
+//        Stack<Integer> stack = new Stack<>();
+//    	
+//        int a = 0;
+//        int b = 0;
+    	
+    	Stack<Double> stack = new Stack<>();
+    	double a = 0.0;
+    	double b = 0.0;
         
         for(int i = 0; i < tokens.length; i++) {
             if(tokens[i].equals("+")) {
@@ -48,10 +52,13 @@ public class LeetCode150_EvaluateReversePolishNotation {
             }
             else {
             	try {
-	                int operator = Integer.parseInt(tokens[i]);
+//	                int operator = Integer.parseInt(tokens[i]);
+            		// try to convert to Double
+            		double operator = Double.parseDouble(tokens[i]);
 	                stack.push(operator);
             	} catch(Exception e){
-            		System.out.println("Invalid token");
+//            		System.out.println("Invalid token");
+            		System.out.println(e.getMessage());
             		return -1;
             	}
             }
@@ -63,7 +70,7 @@ public class LeetCode150_EvaluateReversePolishNotation {
     public static void main(String[] args) {
         LeetCode150_EvaluateReversePolishNotation obj = new LeetCode150_EvaluateReversePolishNotation();
 
-        String[] tokens = {"4", "13", "0", "/", "+"};
+        String[] tokens = {"4", "13", "-5.5", "/", "+"};
 //        String[] tokens = {"10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"};
         try {
         	System.out.println(obj.evalRPN(tokens));
