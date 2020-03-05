@@ -27,7 +27,7 @@ public class LeetCode76_MinimumWindowSubstring {
         }
         
         while(end < s.length()) {
-        	char ch = s.charAt(end);
+        	int ch = s.charAt(end);
         	
         	if (map[ch] > 0) {
         		counter--;
@@ -41,7 +41,7 @@ public class LeetCode76_MinimumWindowSubstring {
 	  	    	    minLen = end - start;
 	  	    	    minStart = start;
 	  	        }
-		  	    char startChar = s.charAt(start);
+		  	    int startChar = s.charAt(start);
 		  	    map[startChar]++;
 		  	    if(map[startChar] > 0) {
 		  	    	counter++;
@@ -50,7 +50,7 @@ public class LeetCode76_MinimumWindowSubstring {
 	        }
         }
         
-        return minLen == Integer.MAX_VALUE ? "" : s.substring(minStart, minStart + minLen);
+        return minLen == s.length() + 1 ? "" : s.substring(minStart, minStart + minLen);
     }
 
 	public static void main(String[] args) {
