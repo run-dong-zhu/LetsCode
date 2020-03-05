@@ -68,8 +68,42 @@ public class LeetCode53_MaximumSubarray {
     	return new int[] {start + 1, end};
     }
     
+    // follow up find at least len(2) maxSubarray
+    public int[] maxSub2(int[] nums) {
+    	if(nums.length == 0) {
+    		return new int[0];
+    	}
+    	
+    	int[] dp = new int[nums.length];
+    	dp[0] = nums[0];
+    	
+    	int max = nums[0];
+    	int end = 0;
+    	
+    	for(int i = 1; i < dp.length; i++) {
+    		if(dp[i - 1] > 0) {
+    			dp[i] = dp[i - 1] + nums[i];
+    		}
+    		else {
+    			dp[i] = nums[i];
+    		}
+    		
+    		if(dp[i] > max) {
+    			max = dp[i];
+    			end = i;
+    		}
+    	}
+    	
+    	int start = end;
+    	while(max > 0) {
+    		max -= nums[start--];
+    	}
+    	
+    	return new int[] {start + 1, end};
+    }
+    
+    
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
         LeetCode53_MaximumSubarray obj = new LeetCode53_MaximumSubarray();
         int[] nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
         System.out.println(obj.maxSubArray(nums));
