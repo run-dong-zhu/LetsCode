@@ -36,6 +36,32 @@ public class LeetCode152_MaximumProductSubarray {
         return product;
     }
     
+    // follow up maxProduct under certain value
+    public int maxProduct(int[] nums, int K) {
+        if(nums.length == 0)
+            return 0;
+        
+        int product = nums[0];
+        
+        for(int i = 1, imax = product, imin = product; i < nums.length; i++) {
+            if(nums[i] < 0) {
+                int temp = imax;
+                imax = imin;
+                imin = temp;
+            }
+            
+            imax = Math.max(imax * nums[i], nums[i]);
+            imin = Math.min(imin * nums[i], nums[i]);
+            
+            if(imax > K) {
+            	
+            }
+            product = Math.max(product, imax);
+        }
+        
+        return product;
+    }
+    
     public static void main(String[] args) {
         LeetCode152_MaximumProductSubarray obj = new LeetCode152_MaximumProductSubarray();
         
