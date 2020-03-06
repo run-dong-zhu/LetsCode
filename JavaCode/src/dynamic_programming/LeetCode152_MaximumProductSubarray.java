@@ -37,6 +37,32 @@ public class LeetCode152_MaximumProductSubarray {
     }
     
     // follow up maxProduct under certain value
+    public int maxProd(int[] nums, int left, int right, int K) {        
+        int product = nums[left];
+        
+        for(int i = left + 1, imax = product, imin = product; i < right; i++) {
+            if(nums[i] < 0) {
+                int temp = imax;
+                imax = imin;
+                imin = temp;
+            }
+            
+            imax = Math.max(imax * nums[i], nums[i]);
+//            System.out.print("imax: " +  imax);
+            imin = Math.min(imin * nums[i], nums[i]);
+//            System.out.print(" imin: " +  imin);
+//            System.out.println();
+            
+            while(imax > K) {
+                imax = maxProd(nums, left + 1, right, K);
+            }
+            
+            product = Math.max(product, imax);
+        }
+        
+        return product;
+    }
+    
     public int maxProduct(int[] nums, int K) {
         if(nums.length == 0)
             return 0;
@@ -53,9 +79,6 @@ public class LeetCode152_MaximumProductSubarray {
             imax = Math.max(imax * nums[i], nums[i]);
             imin = Math.min(imin * nums[i], nums[i]);
             
-            if(imax > K) {
-            	
-            }
             product = Math.max(product, imax);
         }
         
@@ -65,9 +88,18 @@ public class LeetCode152_MaximumProductSubarray {
     public static void main(String[] args) {
         LeetCode152_MaximumProductSubarray obj = new LeetCode152_MaximumProductSubarray();
         
-        int[] nums = {-2, 3, -4};
+        int[] nums = {1, -2, 3, 4};
 
         System.out.println(obj.maxProduct(nums));
+        
+        int[] test = {5, 2, 2, 2, 2, 2, 5};
+        int K = 35;
+        
+        System.out.println(obj.maxProd(test, 0, test.length, K));
+        
+        int[] test2 = {3, 2, -2, 4, -2};
+        int K2 = 40;
+        System.out.println(obj.maxProd(test2, 0, test2.length, K2));
     }
 
 }
