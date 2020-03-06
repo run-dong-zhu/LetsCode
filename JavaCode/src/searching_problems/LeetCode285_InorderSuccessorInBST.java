@@ -43,7 +43,7 @@ public class LeetCode285_InorderSuccessorInBST {
         
         LeetCode285_InorderSuccessorInBST obj = new LeetCode285_InorderSuccessorInBST();
         
-        System.out.println(obj.inorderSuccessor(a, d).val);
+        System.out.println(obj.inorderSuccessor(a, e).val);
     }
 
 }
