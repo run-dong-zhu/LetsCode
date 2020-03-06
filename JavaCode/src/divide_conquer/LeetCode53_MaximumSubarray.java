@@ -40,22 +40,23 @@ public class LeetCode53_MaximumSubarray {
     		return new int[0];
     	}
     	
-    	int[] dp = new int[nums.length];
-    	dp[0] = nums[0];
+//    	int[] dp = new int[nums.length];
+//    	dp[0] = nums[0];
     	
+    	int curr = nums[0];
     	int max = nums[0];
     	int end = 0;
     	
-    	for(int i = 1; i < dp.length; i++) {
-    		if(dp[i - 1] > 0) {
-    			dp[i] = dp[i - 1] + nums[i];
+    	for(int i = 1; i < nums.length; i++) {
+    		if(curr > 0) {
+    			curr = curr + nums[i];
     		}
     		else {
-    			dp[i] = nums[i];
+    			curr = nums[i];
     		}
     		
-    		if(dp[i] > max) {
-    			max = dp[i];
+    		if(curr > max) {
+    			max = curr;
     			end = i;
     		}
     	}
@@ -75,9 +76,7 @@ public class LeetCode53_MaximumSubarray {
     	}
     	
     	int[] dp = new int[nums.length - k + 1];
-    	
-//    	int max = nums[0];
-    	
+    	    	
     	for(int i = 0; i < dp.length; i++) {
     	    int sum = nums[i];
     	    for(int j = 1; j < k; j++) {
