@@ -1,6 +1,7 @@
 package dynamic_programming;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,52 +32,55 @@ import java.util.Set;
  */
 public class LeetCode140_WordBreak2 {
     
+    private void helper(String s, Set<String> words, String path, int start, List<String> res) {
+        if(start == s.length()) {
+            res.add(path);
+            return;
+        }
+        if(path.length() != 0) {
+            path = path + " ";
+        }
+        for(int i = start; i < s.length(); ++i) {
+            String word = s.substring(start, i + 1);
+            if(words.contains(word) == false) {
+                continue;
+            }
+            helper(s, words, path + word, i + 1, res);
+        }
+    }
+    
     public List<String> wordBreak(String s, List<String> wordDict) {
-        Set<Character> set = new HashSet<>();
+        List<String> res = new ArrayList<>();
         
-        for(String word : wordDict) {
-            for(char ch : word.toCharArray()) {
-                set.add(ch);
-            }
-        }
-        
-        for(char ch : s.toCharArray()) {
-            if(!set.contains(ch)) {
-                return new ArrayList<>();
-            }
-        }
+        int n = s.length();
+        boolean[] canBreak = new boolean[n + 1];
+        canBreak[n] = true;
         
         Set<String> words = new HashSet<>(wordDict);
         
-        List<List<String>> dp = new ArrayList<>();
-        List<String> temp = new ArrayList<>();
-        
-        temp.add("");
-        dp.add(temp);
-        
-        for(int i = 1; i <= s.length(); i++) {
-            temp = new ArrayList<>();
-            for(int j = 0; j < i; j++) {
-                if(words.contains(s.substring(j, i))) {
-                    for(int k = 0; k < dp.size(); k++) {
-                        String str = dp.get(i).get(k);
-                        if(str.equals("")) {
-                            temp.add(s.substring(j, i));
-                        }
-                        else {
-                            temp.add(str + " " + s.substring(j, i));
-                        }
-                    }
+        for(int i = n - 1; i >= 0; --i) {
+            for(int j = i; j < n; ++j) {
+                if(words.contains(s.substring(i, j + 1)) && canBreak[j + 1]) {
+                    canBreak[i] = true;
+                    break;
                 }
             }
-            dp.add(temp);
         }
-        return dp.get(s.length());
+        if(canBreak[0] == false) {
+            return res;
+        }
+        helper(s, words, "", 0, res);
+        
+        return res;
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+        LeetCode140_WordBreak2 obj = new LeetCode140_WordBreak2();
 
+        String s = "catsanddog";
+        List<String> wordDict = Arrays.asList("cat", "cats", "and", "sand", "dog");
+        
+        System.out.println(obj.wordBreak(s, wordDict));
     }
 
 }
