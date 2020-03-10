@@ -91,6 +91,6 @@ public class LeetCode65_ValidNumber {
     		System.out.println(obj.isNumber2(test));
     	}
     	
-    	System.out.println(obj.isNumber("-0."));
+    	System.out.println(obj.isNumber("-"));
     }
 }
