@@ -27,7 +27,7 @@ public class LeetCode44_WildcardMatching {
 
     /*
      * if s[i] == p[j] || p[j] == '?', ++i and ++j.
-     * ii, jj, record the positon of '*' in s and p, ++j and go on.
+     * ii, jj, record the position of '*' in s and p, ++j and go on.
      * if not match, go back to star, i = ++ii;
      */
     public boolean isMatch(String s, String p) {
