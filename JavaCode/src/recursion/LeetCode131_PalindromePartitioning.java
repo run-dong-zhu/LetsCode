@@ -23,7 +23,7 @@ public class LeetCode131_PalindromePartitioning {
     
     private boolean isPalindrome(String s) {
         int left = 0;
-        int right = s.length();
+        int right = s.length() - 1;
         
         while(left < right) {
             if(s.charAt(left) != s.charAt(right)) {
@@ -36,33 +36,34 @@ public class LeetCode131_PalindromePartitioning {
         return true;
     }
     
-    private void helper(int i, String curr, String s, List<String> list, List<List<String>> res) {
-        if(i == s.length()) {
+    private void helper(int index, String s, List<String> list, List<List<String>> res) {
+        if(list.size() > 0 && index == s.length()) {
             res.add(new ArrayList<>(list));
             return;
         }
         
-        curr += s.charAt(i);
-        
-        if(isPalindrome(curr)) {
-            list.add(curr);
+        for(int i = index + 1; i <= s.length(); i++) {
+            if(isPalindrome(s.substring(index, i))) {
+                list.add(s.substring(index, i));
+                helper(i, s, list, res);
+                list.remove(list.size() - 1);
+            }
         }
-        
-        helper(i + 1, curr, s, list, res);
     }
     
     public List<List<String>> partition(String s) {
         List<List<String>> res = new ArrayList<>();
         List<String> list = new ArrayList<>();
         
-        helper(0, "", s, list, res);
+        helper(0, s, list, res);
         
         return res;
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
-
+        LeetCode131_PalindromePartitioning obj = new LeetCode131_PalindromePartitioning();
+        String s = "aab";
+        System.out.println(obj.partition(s));
     }
 
 }
