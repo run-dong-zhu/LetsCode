@@ -1,4 +1,4 @@
-package searching_problems;
+package array_problems;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -29,7 +29,7 @@ public class LeetCode15_3Sum {
         List<List<Integer>> res = new LinkedList<>();
         
         for (int i = 0; i < nums.length - 2; i++) {
-            if (i == 0 || (i > 0 && nums[i] != nums[i - 1])) {
+            if (i == 0 || (i > 0 && nums[i] != nums[i - 1])) { // skip duplicate numbers
                 int lo = i + 1;
                 int hi = nums.length - 1;
                 int sum = 0 - nums[i];
@@ -37,11 +37,11 @@ public class LeetCode15_3Sum {
                     if (nums[lo] + nums[hi] == sum) {
                         res.add(Arrays.asList(nums[i], nums[lo], nums[hi]));
                         // avoid same number
-                        while (lo < hi && nums[lo] == nums[lo+1]) {
+                        while (lo < hi && nums[lo] == nums[lo + 1]) {
                             lo++;
                         }
                         // avoid same number
-                        while (lo < hi && nums[hi] == nums[hi-1]) {
+                        while (lo < hi && nums[hi] == nums[hi - 1]) {
                             hi--;
                         }
                         lo++;
