@@ -24,7 +24,7 @@ public class LeetCode50_Pow {
     }
     
     public double myPow(double x, int n) {
-        long N = n;
+        long N = n; // long type avoid stack overflow
         
         if (N < 0) {
             x = 1 / x;
