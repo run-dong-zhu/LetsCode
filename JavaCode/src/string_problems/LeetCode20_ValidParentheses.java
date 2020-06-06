@@ -2,6 +2,13 @@ package string_problems;
 
 import java.util.Stack;
 
+/**
+ * @author run-dong-zhu
+ * @description LeetCode 20, level: Easy
+ * 
+ * https://leetcode.com/problems/valid-parentheses/
+ */
+
 public class LeetCode20_ValidParentheses {
     public boolean isValid(String s) {
         if(s.length() % 2 != 0) {
